@@ -13,11 +13,28 @@ public class PlayerScript : MonoBehaviour
 
     private int scoreValue = 0;
 
+    private int livesValue = 3;
+
+    public Text winText;
+
+    public Text loseText;
+
+    public Text lives;
+
+    public AudioClip musicClipOne;
+
+    public AudioSource musicSource;
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         rd2d = GetComponent<Rigidbody2D>();
-        score.text = scoreValue.ToString();
+        anim = GetComponent<Animator>();
+        winText.text = " ";
+        loseText.text = " ";
+        SetCountText();
+        SetLivesText();
     }
 
     // Update is called once per frame
@@ -41,9 +58,16 @@ public class PlayerScript : MonoBehaviour
        if (collision.collider.tag == "Coin")
         {
             scoreValue += 1;
-            score.text = scoreValue.ToString();
             Destroy(collision.collider.gameObject);
+            SetCountText();
         }
+        
+        if (collision.collider.tag == "Enemy")
+        {
+            livesValue -= 1;
+            Destroy(collision.collider.gameObject);
+            SetLivesText();
+        }  
 
     }
 
@@ -57,4 +81,34 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+        void SetCountText ()
+    {
+        score.text = "Score: " + scoreValue.ToString();
+
+        if (scoreValue == 4)
+        {
+            transform.position = new Vector3(44.0f, 0.0f, 0.0f);
+            livesValue = 3;
+            SetLivesText ();
+        }
+
+        if (scoreValue == 8)
+        {
+            winText.text = "You Win, Game by Ethan Osborne!";
+            Destroy(this);
+            musicSource.clip = musicClipOne;
+            musicSource.Play();
+        }
+    }
+        void SetLivesText ()
+    {
+        lives.text = "Lives: " + livesValue.ToString ();
+
+        if (livesValue == 0)
+        {
+            loseText.text = "You lose, loser!";
+            Destroy(this);
+        }
+    }
+    
 }
