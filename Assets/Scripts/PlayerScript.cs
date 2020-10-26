@@ -98,6 +98,13 @@ public class PlayerScript : MonoBehaviour
             Destroy(this);
             musicSource.clip = musicClipOne;
             musicSource.Play();
+            if (Input.GetKey("escape"))
+
+        {
+
+          Application.Quit();
+        
+        }
         }
     }
         void SetLivesText ()
