@@ -3,7 +3,13 @@ guid: 8aad61cc1e42e5a4da9c93a86f5a6944
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - score: {instanceID: 0}
+  - winText: {instanceID: 0}
+  - loseText: {instanceID: 0}
+  - lives: {instanceID: 0}
+  - musicClipOne: {fileID: 8300000, guid: 8ca9160a86fe4414a8a816d0c57f9bc9, type: 3}
+  - musicSource: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
